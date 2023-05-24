@@ -12,4 +12,8 @@ handlebarsConfig(app);
 app.use(homeController);
 app.use('/cubes', createController);
 
+app.get('*', (res, req) => {
+    req.render('404');
+})
+
 app.listen(5000, () => console.log('Server is running on port 5000'));
