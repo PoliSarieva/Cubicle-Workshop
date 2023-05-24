@@ -4,17 +4,12 @@ const cubeManager = require('./managers/cubeManager');
 
 const expressConfig = require('./config/expressConfig');
 const handlebarsConfig = require('./config/handlebarsConfig');
+const homeController = require('./controllers/homeController');
 
 expressConfig(app);
 handlebarsConfig(app);
 
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
-app.get('/about', (req, res) => {
-    res.render('about');
-});
+app.use(homeController);
 
 app.get('/create', (req, res) => {
     console.log(cubeManager.getAll());;
