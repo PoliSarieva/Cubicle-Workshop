@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     const cubes = cubeManager.getAll();
-    console.log(cubes);
     res.render('index', { cubes });
 });
 

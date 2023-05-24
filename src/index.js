@@ -5,7 +5,6 @@ const expressConfig = require('./config/expressConfig');
 const handlebarsConfig = require('./config/handlebarsConfig');
 const homeController = require('./controllers/homeController');
 const createController = require('./controllers/cubeController');
-
 expressConfig(app);
 handlebarsConfig(app);
 
