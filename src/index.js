@@ -1,22 +1,12 @@
 const express = require('express');
 const app = express();
-const handlebars = require('express-handlebars');
-const path = require('path');
 const cubeManager = require('./managers/cubeManager');
 
-const bodyParser = express.urlencoded({extended: false});
-app.use(bodyParser);
+const expressConfig = require('./config/expressConfig');
+const handlebarsConfig = require('./config/handlebarsConfig');
 
-app.engine('hbs', handlebars.engine({
-    extname: 'hbs'
-}));
-
-app.set('view engine', 'hbs');
-app.set('views', 'src/views');
-
-app.listen(5000, () => console.log('Server is running on port 5000'));
-
-app.use(express.static(path.resolve(__dirname, 'static')));
+expressConfig(app);
+handlebarsConfig(app);
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -33,7 +23,10 @@ app.get('/create', (req, res) => {
 
 app.post('/create', (req,res) => {
     const { name, description, imageUrl, difficultyLevel } = req.body;
-    
+
     cubeManager.createCube({name, description, imageUrl, difficultyLevel});
     res.redirect('/');
 });
+
+
+app.listen(5000, () => console.log('Server is running on port 5000'));
