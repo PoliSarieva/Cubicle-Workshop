@@ -5,6 +5,13 @@ const expressConfig = require('./config/expressConfig');
 const handlebarsConfig = require('./config/handlebarsConfig');
 const homeController = require('./controllers/homeController');
 const createController = require('./controllers/cubeController');
+const dbConnect = require('./config/dbConfig');
+
+dbConnect()
+    .then(() => console.log('DB connect sucessfully'))
+    .catch(err => {
+        console.log('DB Error ', err);
+    });
 
 expressConfig(app);
 handlebarsConfig(app);
