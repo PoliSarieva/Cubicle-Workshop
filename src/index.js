@@ -3,9 +3,12 @@ const app = express();
 
 const expressConfig = require('./config/expressConfig');
 const handlebarsConfig = require('./config/handlebarsConfig');
-const homeController = require('./controllers/homeController');
-const createController = require('./controllers/cubeController');
+const routes = require('./routes');
+
 const dbConnect = require('./config/dbConfig');
+
+expressConfig(app);
+handlebarsConfig(app);
 
 dbConnect()
     .then(() => console.log('DB connect sucessfully'))
@@ -13,14 +16,6 @@ dbConnect()
         console.log('DB Error ', err);
     });
 
-expressConfig(app);
-handlebarsConfig(app);
-
-app.use(homeController);
-app.use('/cubes', createController);
-
-app.get('*', (res, req) => {
-    req.render('404');
-})
+app.use(routes);
 
 app.listen(5000, () => console.log('Server is running on port 5000'));
