@@ -2,7 +2,6 @@ const Cube = require('../models/Cube');
 
 exports.getAll =async (search,from,to) => {
     let result =await Cube.find().lean();
-    console.log(result);
 
     if (result == search) {
         result = result.filter(cube => cube.toLowerCase().includes(search.toLowerCase()))
