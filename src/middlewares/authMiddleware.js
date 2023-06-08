@@ -2,7 +2,7 @@ const jwt = require('../lip/jwt');
 const { SECRET } = require('../config/config');
 
 exports.auth =async (req, res, next) => {
-    const token = req.cookise['auth'];
+    const token = req.cookies['auth'];
     
     if (token) {
         try {
