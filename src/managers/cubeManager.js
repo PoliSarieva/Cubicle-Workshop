@@ -15,7 +15,7 @@ exports.getAll =async (search,from,to) => {
         result = result.filter(cube => cube.difficultyLevel <= Number(from));
     }
 
-    //return result;
+    return result;
 };
 
 exports.getOne = (cubeId) => Cube.findById(cubeId);
